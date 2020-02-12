@@ -1,8 +1,9 @@
 #pragma once
 class UserInterface
 {
-    void updateGUI();
-    char getInput();
-    void displayBoard();
+	public:
+		void updateGUI(char output);
+		char getInput();
+		void displayBoard();
 };
 

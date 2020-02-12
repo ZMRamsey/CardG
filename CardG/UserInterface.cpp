@@ -1,17 +1,22 @@
 #include "UserInterface.h"
 #include <iostream>
 
-void updateGUI()
-{
+using namespace std;
 
+void UserInterface::updateGUI(char output)
+{
+	cout << "\n" << output;
 }
 
-char getInput()
+char UserInterface::getInput()
 {
-
+	char resp;
+	cout << "\n>";
+	cin >> resp;
+	return resp;
 }
 
-void displayBoard()
+void UserInterface::displayBoard()
 {
 
 }
