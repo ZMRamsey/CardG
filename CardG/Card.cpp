@@ -1,4 +1,7 @@
 #include "Card.h"
+#include "CardType.h"
+
+using namespace std;
 
 Card::Card(string name, CardType type1, CardType type2, int pivot)
 {
@@ -10,8 +13,19 @@ Card::Card(string name, CardType type1, CardType type2, int pivot)
 
 void Card::activate()
 {
+	CardType active;
+
+	activeType.Effect();
 }
 
-void Card::update()
+void Card::update(int power)
 {
+	if (power >= pivot)
+	{
+		activeType = type2;
+	}
+	else
+	{
+		activeType = type1;
+	}
 }

@@ -9,11 +9,11 @@ class Card
 	CardType type1;
 	CardType type2;
 	int pivot;
-	bool activeType;
+	CardType activeType;
 
 	public:
 		Card(string, CardType, CardType, int);
 		void activate();
-		void update();
+		void update(int);
 
 };

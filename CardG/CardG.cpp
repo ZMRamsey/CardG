@@ -4,9 +4,9 @@ int main()
 {
 	UserInterface gui;
 
-	char response;
+	gui.displayBoard();
 
-	response = gui.getInput();
+	gui.clearScreen();
 
-	gui.updateGUI(response);
+	gui.displayBoard();
 }
