@@ -151,18 +151,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AIClass.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Card.cpp" />
+    <ClCompile Include="CardBox.cpp" />
     <ClCompile Include="CardG.cpp" />
     <ClCompile Include="CardType.cpp" />
     <ClCompile Include="Hand.cpp" />
+    <ClCompile Include="Logger.cpp" />
     <ClCompile Include="UserInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AIClass.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="Card.h" />
+    <ClInclude Include="CardBox.h" />
     <ClInclude Include="CardType.h" />
     <ClInclude Include="Hand.h" />
+    <ClInclude Include="Logger.h" />
     <ClInclude Include="UserInterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
