@@ -13,6 +13,7 @@ class Card
 	int pivot;
 	CardType activeType;
 	bool type1Active;
+	bool isNull;
 
 	public:
 		Card();
@@ -23,4 +24,5 @@ class Card
 		string getDisplayName2();
 		string getCurrentDisplayName();
 		bool getTopHighlight();
+		bool checkIfNull();
 };

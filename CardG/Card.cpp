@@ -60,3 +60,8 @@ bool Card::getTopHighlight()
 {
 	return type1Active;
 }
+
+bool Card::checkIfNull()
+{
+	return isNull;
+}

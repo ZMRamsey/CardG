@@ -3,6 +3,7 @@ class Board
 {
 	int power1;
 	int power2;
+	int marker;
 	bool turn;
 	string p1Name;
 	string p2Name;
@@ -11,10 +12,13 @@ class Board
 	Card deck[20];
 	Hand hand1;
 	Hand hand2;
+	UserInterface* gui;
 
 public:
 	Board();
 	void startMatch();
+	bool gameLoop();
+	void displayBoard();
 	void setPlayerPower(int power);
 	void setEnemyPower(int power);
 	void playCard();

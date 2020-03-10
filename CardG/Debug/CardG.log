@@ -1,3 +1,104 @@
-﻿  UserInterface.cpp
+﻿  Board.cpp
 c:\users\zoey\documents\coding\owo\cardg\cardg\card.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  CardG.vcxproj -> C:\Users\Zoey\Documents\Coding\OwO\CardG\Debug\CardG.exe
+c:\users\zoey\documents\coding\owo\cardg\cardg\card.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\zoey\documents\coding\owo\cardg\cardg\card.h(7): error C2011: 'Card': 'class' type redefinition
+  c:\users\zoey\documents\coding\owo\cardg\cardg\card.h(6): note: see declaration of 'Card'
+c:\users\zoey\documents\coding\owo\cardg\cardg\cardbox.h(7): error C2079: 'CardBox::allCards' uses undefined class 'Card'
+c:\users\zoey\documents\coding\owo\cardg\cardg\board.h(10): error C2079: 'Board::board1' uses undefined class 'Card'
+c:\users\zoey\documents\coding\owo\cardg\cardg\board.h(11): error C2079: 'Board::board2' uses undefined class 'Card'
+c:\users\zoey\documents\coding\owo\cardg\cardg\board.h(12): error C2079: 'Board::deck' uses undefined class 'Card'
+c:\users\zoey\documents\coding\owo\cardg\cardg\board.cpp(23): error C2109: subscript requires array or pointer type
+c:\users\zoey\documents\coding\owo\cardg\cardg\board.cpp(52): error C3867: 'Hand::getNoInHand': non-standard syntax; use '&' to create a pointer to member
+c:\users\zoey\documents\coding\owo\cardg\cardg\board.cpp(76): error C2027: use of undefined type 'Card'
+  c:\users\zoey\documents\coding\owo\cardg\cardg\card.h(6): note: see declaration of 'Card'
+c:\users\zoey\documents\coding\owo\cardg\cardg\board.cpp(107): error C2664: 'void UserInterface::displayBoard(std::string,std::string,int,int,Card [],Card [],Hand,Hand)': cannot convert argument 5 from 'int' to 'Card []'
+  c:\users\zoey\documents\coding\owo\cardg\cardg\board.cpp(107): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
+c:\users\zoey\documents\coding\owo\cardg\cardg\board.cpp(147): error C2079: 'placeholder' uses undefined class 'Card'
+c:\users\zoey\documents\coding\owo\cardg\cardg\board.cpp(147): error C2109: subscript requires array or pointer type
+c:\users\zoey\documents\coding\owo\cardg\cardg\board.cpp(148): error C2109: subscript requires array or pointer type
+c:\users\zoey\documents\coding\owo\cardg\cardg\board.cpp(149): error C2109: subscript requires array or pointer type
+  CardG.cpp
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.h(10): error C2061: syntax error: identifier 'string'
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.h(14): error C3646: 'bracketCheck': unknown override specifier
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.h(14): error C2059: syntax error: '('
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.h(14): error C2238: unexpected token(s) preceding ';'
+c:\users\zoey\documents\coding\owo\cardg\cardg\cardbox.h(7): error C3646: 'allCards': unknown override specifier
+c:\users\zoey\documents\coding\owo\cardg\cardg\cardbox.h(7): error C2143: syntax error: missing ',' before '['
+c:\users\zoey\documents\coding\owo\cardg\cardg\cardbox.h(7): error C2143: syntax error: missing ')' before ';'
+c:\users\zoey\documents\coding\owo\cardg\cardg\cardbox.h(7): error C2238: unexpected token(s) preceding ';'
+c:\users\zoey\documents\coding\owo\cardg\cardg\card.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\zoey\documents\coding\owo\cardg\cardg\card.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\zoey\documents\coding\owo\cardg\cardg\card.h(7): error C2011: 'Card': 'class' type redefinition
+  c:\users\zoey\documents\coding\owo\cardg\cardg\card.h(6): note: see declaration of 'Card'
+  Hand.cpp
+c:\users\zoey\documents\coding\owo\cardg\cardg\card.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\zoey\documents\coding\owo\cardg\cardg\hand.cpp(51): error C2276: '!': illegal operation on bound member function expression
+c:\users\zoey\documents\coding\owo\cardg\cardg\hand.cpp(52): error C2276: '!': illegal operation on bound member function expression
+c:\users\zoey\documents\coding\owo\cardg\cardg\hand.cpp(53): error C2276: '!': illegal operation on bound member function expression
+c:\users\zoey\documents\coding\owo\cardg\cardg\hand.cpp(54): error C2276: '!': illegal operation on bound member function expression
+c:\users\zoey\documents\coding\owo\cardg\cardg\hand.cpp(55): error C2276: '!': illegal operation on bound member function expression
+  UserInterface.cpp
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.h(10): error C2061: syntax error: identifier 'string'
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.h(14): error C3646: 'bracketCheck': unknown override specifier
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.h(14): error C2059: syntax error: '('
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.h(14): error C2238: unexpected token(s) preceding ';'
+c:\users\zoey\documents\coding\owo\cardg\cardg\card.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\zoey\documents\coding\owo\cardg\cardg\card.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\zoey\documents\coding\owo\cardg\cardg\card.h(7): error C2011: 'Card': 'class' type redefinition
+  c:\users\zoey\documents\coding\owo\cardg\cardg\card.h(6): note: see declaration of 'Card'
+c:\users\zoey\documents\coding\owo\cardg\cardg\hand.h(7): error C2079: 'Hand::one' uses undefined class 'Card'
+c:\users\zoey\documents\coding\owo\cardg\cardg\hand.h(8): error C2079: 'Hand::two' uses undefined class 'Card'
+c:\users\zoey\documents\coding\owo\cardg\cardg\hand.h(9): error C2079: 'Hand::three' uses undefined class 'Card'
+c:\users\zoey\documents\coding\owo\cardg\cardg\hand.h(10): error C2079: 'Hand::four' uses undefined class 'Card'
+c:\users\zoey\documents\coding\owo\cardg\cardg\hand.h(11): error C2079: 'Hand::five' uses undefined class 'Card'
+c:\users\zoey\documents\coding\owo\cardg\cardg\hand.h(12): error C2079: 'Hand::nullCard' uses undefined class 'Card'
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(23): error C2511: 'void UserInterface::displayBoard(std::string,std::string,int,int,Card [],Card [],Hand,Hand)': overloaded member function not found in 'UserInterface'
+  c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.h(5): note: see declaration of 'UserInterface'
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(25): error C2352: 'UserInterface::clearScreen': illegal call of non-static member function
+  c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.h(11): note: see declaration of 'UserInterface::clearScreen'
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(29): error C3867: 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::length': non-standard syntax; use '&' to create a pointer to member
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(29): error C2446: '<': no conversion from 'int' to 'unsigned int (__thiscall std::basic_string<char,std::char_traits<char>,std::allocator<char>>::* )(void) noexcept const'
+  c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(29): note: There are no conversions from integral values to pointer-to-member values
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(46): error C2027: use of undefined type 'Card'
+  c:\users\zoey\documents\coding\owo\cardg\cardg\card.h(6): note: see declaration of 'Card'
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(52): error C2027: use of undefined type 'Card'
+  c:\users\zoey\documents\coding\owo\cardg\cardg\card.h(6): note: see declaration of 'Card'
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(57): error C2027: use of undefined type 'Card'
+  c:\users\zoey\documents\coding\owo\cardg\cardg\card.h(6): note: see declaration of 'Card'
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(63): error C2027: use of undefined type 'Card'
+  c:\users\zoey\documents\coding\owo\cardg\cardg\card.h(6): note: see declaration of 'Card'
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(71): error C3867: 'Hand::getOne': non-standard syntax; use '&' to create a pointer to member
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(71): error C3861: 'bracketCheck': identifier not found
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(72): error C3867: 'Hand::getOne': non-standard syntax; use '&' to create a pointer to member
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(72): error C3861: 'bracketCheck': identifier not found
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(73): error C3867: 'Hand::getTwo': non-standard syntax; use '&' to create a pointer to member
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(73): error C3861: 'bracketCheck': identifier not found
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(74): error C3867: 'Hand::getTwo': non-standard syntax; use '&' to create a pointer to member
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(74): error C3861: 'bracketCheck': identifier not found
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(75): error C3867: 'Hand::getThree': non-standard syntax; use '&' to create a pointer to member
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(75): error C3861: 'bracketCheck': identifier not found
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(76): error C3867: 'Hand::getThree': non-standard syntax; use '&' to create a pointer to member
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(76): error C3861: 'bracketCheck': identifier not found
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(77): error C3867: 'Hand::getFour': non-standard syntax; use '&' to create a pointer to member
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(77): error C3861: 'bracketCheck': identifier not found
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(78): error C3867: 'Hand::getFour': non-standard syntax; use '&' to create a pointer to member
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(78): error C3861: 'bracketCheck': identifier not found
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(79): error C3867: 'Hand::getFive': non-standard syntax; use '&' to create a pointer to member
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(79): error C3861: 'bracketCheck': identifier not found
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(80): error C3867: 'Hand::getFive': non-standard syntax; use '&' to create a pointer to member
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(80): error C3861: 'bracketCheck': identifier not found
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(135): error C2039: 'bracketCheck': is not a member of 'UserInterface'
+  c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.h(5): note: see declaration of 'UserInterface'
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(136): error C2027: use of undefined type 'Card'
+  c:\users\zoey\documents\coding\owo\cardg\cardg\card.h(6): note: see declaration of 'Card'
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(137): error C2146: syntax error: missing ';' before identifier 'str'
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(142): error C2027: use of undefined type 'Card'
+  c:\users\zoey\documents\coding\owo\cardg\cardg\card.h(6): note: see declaration of 'Card'
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(153): error C2065: 'str': undeclared identifier
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(153): error C2027: use of undefined type 'Card'
+  c:\users\zoey\documents\coding\owo\cardg\cardg\card.h(6): note: see declaration of 'Card'
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(154): error C2027: use of undefined type 'Card'
+  c:\users\zoey\documents\coding\owo\cardg\cardg\card.h(6): note: see declaration of 'Card'
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(166): error C2065: 'str': undeclared identifier
+c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(170): error C2065: 'str': undeclared identifier
+  Generating Code...
