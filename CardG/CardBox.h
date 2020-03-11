@@ -1,3 +1,5 @@
+#include "Card.h"
+
 #pragma once
 class CardBox
 {

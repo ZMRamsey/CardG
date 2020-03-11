@@ -2,12 +2,15 @@
 #include "CardBox.h"
 #include "Hand.h"
 #include "Card.h"
+#include "Board.h"
 #include <stdlib.h>
 
 int main()
 {
 	UserInterface gui;
 	char resp;
+
+	Board board;
 
 	gui.titleScreen();
 	gui.mainMenu();
@@ -24,6 +27,7 @@ int main()
 	else
 	{
 		//play the game
+		board.startMatch();
 	}
 
 	//gui.displayBoard();

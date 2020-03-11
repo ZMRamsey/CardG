@@ -1,26 +1,84 @@
 #include "Hand.h"
 
-Card Hand::getOne()
+Hand::Hand()
 {
-	return one;
+	//one = Card();
+	//two = Card();
+	//three = Card();
+	//four = Card();
+	//five = Card();
+	step = 1;
 }
 
-Card Hand::getTwo()
+Hand::Hand(Card cOne, Card cTwo, Card cThree, Card cFour, Card cFive)
+{
+	//one = &cOne;
+	two = &cTwo;
+	three = &cThree;
+	four = &cFour;
+	five = &cFive;
+	step = 1;
+}
+
+void Hand::addToHand(Card card)
+{
+	if (getFromInt(1).checkIfNull()) { one = card; }
+	else if (getFromInt(2).checkIfNull()) { two = &card; }
+	else if (getFromInt(3).checkIfNull()) { three = &card; }
+	else if (getFromInt(4).checkIfNull()) { four = &card; }
+	else if(getFromInt(5).checkIfNull()) { five = &card; }
+}
+
+void Hand::fillHand(Card card)
+{
+	if (step == 1)
+	{ 
+		one = card;
+		step++;
+	}
+	else if (step == 2)
+	{
+		two = &card;
+		step++;
+	}
+	else if (step == 3)
+	{
+		three = &card;
+		step++;
+	}
+	else if (step == 4)
+	{
+		four = &card;
+		step++;
+	}
+	else if (step == 5)
+	{
+		five = &card;
+		step++;
+	}
+}
+
+Card* Hand::getOne()
+{
+	return &one;
+}
+
+Card* Hand::getTwo()
 {
 	return two;
 }
 
-Card Hand::getThree()
+Card* Hand::getThree()
 {
 	return three;
 }
 
-Card Hand::getFour()
+Card* Hand::getFour()
 {
 	return four;
 }
 
-Card Hand::getFive()
+Card* Hand::getFive()
 {
 	return five;
 }
@@ -30,15 +88,15 @@ Card Hand::getFromInt(int num)
 	switch (num)
 	{
 	case 1:
-		return getOne();
+		return *getOne();
 	case 2:
-		return getTwo();
+		return *getTwo();
 	case 3:
-		return getThree();
+		return *getThree();
 	case 4:
-		return getFour();
+		return *getFour();
 	case 5:
-		return getFive();
+		return *getFive();
 
 	default:
 		break;
@@ -47,32 +105,32 @@ Card Hand::getFromInt(int num)
 
 int Hand::getNoInHand()
 {
-	int count = 0;
-	if (!getOne().checkIfNull) { count++; }
-	if (!getTwo().checkIfNull) { count++; }
-	if (!getThree().checkIfNull) { count++; }
-	if (!getFour().checkIfNull) { count++; }
-	if (!getFive().checkIfNull) { count++; }
+	int count = 5;
+	if (getOne()->checkIfNull()) { count--; }
+	if (getTwo()->checkIfNull()) { count--; }
+	if (getThree()->checkIfNull()) { count--; }
+	if (getFour()->checkIfNull()) { count--; }
+	if (getFive()->checkIfNull()) { count--; }
 
 	return count;
 }
 
-void Hand::useCard(int num)
-{
-	switch (num)
-	{
-	case 1:
-		one = nullCard;
-	case 2:
-		two = nullCard;
-	case 3:
-		three = nullCard;
-	case 4:
-		four = nullCard;
-	case 5:
-		five = nullCard;
-	}
-}
+//void Hand::useCard(int num)
+//{
+//	switch (num)
+//	{
+//	case 1:
+//		one = nullCard;
+//	case 2:
+//		two = nullCard;
+//	case 3:
+//		three = nullCard;
+//	case 4:
+//		four = nullCard;
+//	case 5:
+//		five = nullCard;
+//	}
+//}
 
 void Hand::update()
 {

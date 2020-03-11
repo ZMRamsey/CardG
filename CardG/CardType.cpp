@@ -4,12 +4,14 @@ CardType::CardType()
 {
 	type = 0;
 	change = 0;
+	name = " ";
 }
 
-CardType::CardType(int type, int change)
+CardType::CardType(int type, int change, string name)
 {
 	this->type = type;
 	this->change = change;
+	this->name = name;
 }
 
 void CardType::Effect(int* power)

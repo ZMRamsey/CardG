@@ -1,10 +1,11 @@
 #include "Card.h"
-#include "CardType.h"
-
-using namespace std;
 
 Card::Card()
 {
+	name = "Null";
+	displayName1 = "XX";
+	displayName2 = "XX";
+	pivot = 0;
 }
 
 Card::Card(string name, CardType* type1, CardType* type2, int pivot, string displayName1, string displayName2)
@@ -13,6 +14,8 @@ Card::Card(string name, CardType* type1, CardType* type2, int pivot, string disp
 	this->type1 = *type1;
 	this->type2 = *type2;
 	this->pivot = pivot;
+	this->displayName1 = displayName1;
+	this->displayName2 = displayName2;
 }
 
 void Card::activate(int* power)

@@ -1,6 +1,14 @@
 #pragma once
+
+#include <string>
+
+using namespace std;
+
 class CardType
 {
+public:
+	string name;
+
 	//1: Power+
 	//2: Power-
 	//3: Steal from board
@@ -11,10 +19,10 @@ class CardType
 
 	//Level of power+/-
 	int change;
-
-public:
+	
+	
 	CardType();
-	CardType(int type, int change);
+	CardType(int type, int change, string name);
 	void Effect(int* power);
 };
 
