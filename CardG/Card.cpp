@@ -11,16 +11,18 @@ Card::Card()
 Card::Card(string name, CardType* type1, CardType* type2, int pivot, string displayName1, string displayName2)
 {
 	this->name = name;
-	this->type1 = *type1;
-	this->type2 = *type2;
+	this->type1 = type1;
+	this->type2 = type2;
 	this->pivot = pivot;
 	this->displayName1 = displayName1;
 	this->displayName2 = displayName2;
+
+	isNull = false;
 }
 
-void Card::activate(int* power)
+void Card::activate(int* power1, int* power2, int* stealNotRemove)
 {
-	activeType.Effect(power);
+	activeType->Effect(power1, power2, stealNotRemove);
 }
 
 void Card::update(int power)
@@ -67,4 +69,9 @@ bool Card::getTopHighlight()
 bool Card::checkIfNull()
 {
 	return isNull;
+}
+
+void Card::setActive(bool active)
+{
+	isNull = !active;
 }

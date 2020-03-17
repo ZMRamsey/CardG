@@ -1,7 +1,3 @@
-#include "Hand.h"
-#include "CardType.h"
-#include "CardBox.h"
-#include "UserInterface.h"
 #include "Board.h"
 #include <stdlib.h>
 #include <time.h>
@@ -20,10 +16,14 @@ void Board::startMatch()
 	//Assign gui
 	gui = new UserInterface();
 
+	//Set names
 	p1Name = "AI";
 	p2Name = gui->getName();
 
-	//set marker to beginning of deck
+	//Make AI
+	//AIClass ai = new RandomAI();
+
+	//Set marker to beginning of deck
 	marker = 0;
 
 	//Copy the cards across to the deck
@@ -51,6 +51,10 @@ void Board::startMatch()
 	//Draw cards 5 times and add to hands
 	drawCards();
 
+	//Set starting powers
+	power1 = 3;
+	power2 = 3;
+
 	//Start gameLoop
 	bool victory = gameLoop();
 
@@ -71,14 +75,17 @@ bool Board::gameLoop()
 	
 	while (true)
 	{
+		hand1.update(power1);
+		hand2.update(power2);
+
 	//enemy goes first
 		//draw board
-		displayBoard();
+		//displayBoard();
 		
 		//AI picks card
 
 		//draw board
-		displayBoard();
+		//displayBoard();
 
 		//card effects
 		
@@ -93,15 +100,35 @@ bool Board::gameLoop()
 			resp = gui->getInput();
 			int num = resp - '0';
 
-			if ((resp == '1', '2', '3', '4', '5') && (!hand2.getFromInt(num).checkIfNull()))
-			{
-				//pick card
-				break;
-			}
-			else if (resp == 'q')
+			if (resp == 'q')
 			{
 				//quit
+				return false;
 				break;
+			}
+			else if (resp == '1', '2', '3', '4', '5')
+			{
+				if (!hand2.getFromInt(num).checkIfNull())
+				{
+					//pick card
+					hand2.getFromInt(num).activate(&power2, &power1, &stealRemove);
+					
+					if (!playCard(2, hand2.getFromInt(num)))
+					{
+						//no room on board
+					}
+					else
+					{
+						if (stealRemove != 0)
+						{
+							playerStealOrRemove();
+						}
+
+						hand2.useCard(num);
+					}
+
+					break;
+				}
 			}
 			else if (resp == 'h')
 			{
@@ -113,7 +140,6 @@ bool Board::gameLoop()
 		//draw board
 		displayBoard();
 
-		//card effects
 		//log
 
 	//Check special like steals and removes
@@ -138,14 +164,34 @@ void Board::setEnemyPower(int power)
 	power1 += power;
 }
 
-void Board::playCard()
+bool Board::playCard(int board, Card card)
 {
-	//Add card to player board
-}
-
-void Board::removeCard()
-{
-	//Remove card from player board
+	if (board == 1)
+	{
+		//Add card to AI board
+		for (int i = 0; i < 5; i++)
+		{
+			if (board1[i].checkIfNull())
+			{
+				board1[i] = card;
+				return true;
+			}
+		}
+		return false;
+	}
+	else if (board == 2)
+	{
+		//Add card to player board
+		for (int i = 0; i < 5; i++)
+		{
+			if (board2[i].checkIfNull())
+			{
+				board2[i] = card;
+				return true;
+			}
+		}
+		return false;
+	}
 }
 
 void Board::drawCards()
@@ -193,6 +239,114 @@ void Board::shuffleCards()
 		int slot2 = rand() % 20;
 		swap(deck[slot1], deck[slot2]);
 	}
+}
+
+void Board::playerStealOrRemove()
+{
+	char choice;
+
+	switch (stealRemove)
+	{
+	case 1:
+		//SB
+		gui->stealRemoveSelect(true, false, board1, board2);
+
+		while (true)
+		{
+			choice = gui->getInput();
+			if (choice = '1', '2', '3', '4', '5')
+			{
+				if (!(board1[choice - '0'].checkIfNull()))
+				{
+					//card is stolen
+					hand2.addToHand(board1[choice - '0']);
+					board1[choice - '0'].setActive(false);
+					return;
+				}
+			}
+		}
+
+		break;
+
+	case 2:
+		//SH
+		gui->stealRemoveSelect(true, true, board1, board2);
+
+		while (true)
+		{
+			choice = gui->getInput();
+			if (choice = '1', '2', '3', '4', '5')
+			{
+				if (!hand1.getFromInt(choice - '0').checkIfNull())
+				{
+					//card is stolen
+					hand2.addToHand(board1[choice - '0']);
+					hand1.getFromInt(choice - '0').setActive(false);
+					return;
+				}
+			}
+		}
+
+		break;
+
+	case 3:
+		//RB
+		gui->stealRemoveSelect(false, false, board1, board2);
+
+		while (true)
+		{
+			choice = gui->getInput();
+			if (choice = '1', '2', '3', '4', '5')
+			{
+				if (!board1[choice - '0'].checkIfNull())
+				{
+					//card is removed
+					board1[choice - '0'].setActive(false);
+					return;
+				}
+			}
+			if (choice = '6', '7', '8', '9', '0')
+			{
+				if (!board2[choice - '0'].checkIfNull())
+				{
+					//card is removed
+					board2[choice - '0'].setActive(false);
+					return;
+				}
+			}
+		}
+
+		break;
+
+	case 4:
+		//RH
+		gui->stealRemoveSelect(false, true, board1, board2);
+
+		while (true)
+		{
+			choice = gui->getInput();
+			if (choice = '1', '2', '3', '4', '5')
+			{
+				if (!hand1.getFromInt(choice - '0').checkIfNull())
+				{
+					//card is removed
+					hand1.getFromInt(choice - '0').setActive(false);
+					return;
+				}
+			}
+		}
+
+		break;
+
+	default:
+		break;
+
+	}
+}
+
+void Board::aiStealOrRemove()
+{
+
 }
 
 void Board::logTurn()

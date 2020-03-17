@@ -31,17 +31,21 @@ string UserInterface::getName()
 	}
 }
 
-void UserInterface::displayBoard(string playerName, string enemyName, int power1, int power2, Card board1[5], Card board2[5], Hand hand1, Hand hand2)
+void UserInterface::displayBoard(string enemyName, string playerName, int power1, int power2, Card board1[5], Card board2[5], Hand hand1, Hand hand2)
 {
 	//clear screen
 	clearScreen();
 
 	//fix name
-
-	while (playerName.length() < 13)
+	while (playerName.length() <= 13)
 	{
 		playerName = playerName + " ";
 	}
+	while (enemyName.length() <= 13)
+	{
+		enemyName = enemyName + " ";
+	}
+
 	//names are 13 characters long
 
 	//TODO: Make face react to difference in power levels
@@ -83,18 +87,48 @@ void UserInterface::displayBoard(string playerName, string enemyName, int power1
 	//Card testCard = Card();
 	//testCard = *hand2.getOne();
 
-	string hand1A = bracketCheck(hand2.getOne(), true);
-	string hand1B = bracketCheck(hand2.getOne(), false);
-	string hand2A = bracketCheck(hand2.getTwo(), true);
-	string hand2B = bracketCheck(hand2.getTwo(), false);
-	string hand3A = bracketCheck(hand2.getThree(), true);
-	string hand3B = bracketCheck(hand2.getThree(), false);
-	string hand4A = bracketCheck(hand2.getFour(), true);
-	string hand4B = bracketCheck(hand2.getFour(), false);
-	string hand5A = bracketCheck(hand2.getFive(), true);
-	string hand5B = bracketCheck(hand2.getFive(), false);
+	string blank = "    ";
+	string hand1A = blank;
+	string hand1B = blank;
+	string hand2A = blank;
+	string hand2B = blank;
+	string hand3A = blank;
+	string hand3B = blank;
+	string hand4A = blank;
+	string hand4B = blank;
+	string hand5A = blank;
+	string hand5B = blank;
 
 
+	if (!hand2.getOne()->checkIfNull())
+	{
+		hand1A = bracketCheck(hand2.getOne(), true);
+		hand1B = bracketCheck(hand2.getOne(), false);
+	}
+
+	if (!hand2.getTwo()->checkIfNull())
+	{
+		hand2A = bracketCheck(hand2.getTwo(), true);
+		hand2B = bracketCheck(hand2.getTwo(), false);
+	}
+
+	if (!hand2.getThree()->checkIfNull())
+	{
+		hand3A = bracketCheck(hand2.getThree(), true);
+		hand3B = bracketCheck(hand2.getThree(), false);
+	}
+
+	if (!hand2.getFour()->checkIfNull())
+	{
+		hand4A = bracketCheck(hand2.getFour(), true);
+		hand4B = bracketCheck(hand2.getFour(), false);
+	}
+
+	if (!hand2.getFive()->checkIfNull())
+	{
+		hand5A = bracketCheck(hand2.getFive(), true);
+		hand5B = bracketCheck(hand2.getFive(), false);
+	}
 
 
 	//display board
@@ -125,10 +159,12 @@ void UserInterface::displayBoard(string playerName, string enemyName, int power1
 
 void UserInterface::clearScreen()
 {
-	for (int i = 0; i < 25; i++)
+	/*for (int i = 0; i < 18; i++)
 	{
 		cout << "\n";
-	}
+	}*/
+
+	system("CLS");
 }
 
 void UserInterface::titleScreen()
@@ -159,16 +195,16 @@ void UserInterface::cardSelect(Card card1, Card card2)
 	name2 = fixLength(name2, 17);
 
 	//effect names, must also be 17 chars long
-	string effect11 = card1.type1.name;
+	string effect11 = card1.type1->name;
 	effect11 = fixLength(effect11, 17);
 
-	string effect12 = card1.type2.name;
+	string effect12 = card1.type2->name;
 	effect12 = fixLength(effect12, 17);
 
-	string effect21 = card2.type1.name;
+	string effect21 = card2.type1->name;
 	effect21 = fixLength(effect21, 17);
 
-	string effect22 = card2.type2.name;
+	string effect22 = card2.type2->name;
 	effect22 = fixLength(effect22, 17);
 
 	//pivot values
@@ -181,7 +217,7 @@ void UserInterface::cardSelect(Card card1, Card card2)
 	cout << " | " << effect11 << " |        | " << effect21 << " | " << endl;
 	cout << " |                   |  ----  |                   | " << endl;
 	cout << " |-------------------|  =OR=  |-------------------| " << endl;
-	cout << " | " << effect12 << " |        | " << effect22 << " | " << endl;
+	cout << " | " << effect12 << " |  ----  | " << effect22 << " | " << endl;
 	cout << " |         __________|        |         __________| " << endl;
 	cout << " |        / PIVOT: " << pivot1 << " |        |        / PIVOT: " << pivot2 << " | " << endl;
 	cout << " |_______/___________|        |_______/___________| " << endl;
@@ -192,6 +228,98 @@ void UserInterface::cardSelect(Card card1, Card card2)
 
 void UserInterface::showHand()
 {
+	//Show full hand when player asks
+}
+
+void UserInterface::stealRemoveSelect(bool stealNotRemove, bool fromHand, Card board1[5], Card board2[5])
+{
+	string cardsB[10];
+	for (int i = 0; i < 10; i++)
+	{
+		string testString;
+		if (i < 5)
+		{
+			if (board1[i].checkIfNull())
+			{
+				testString = "  ";
+			}
+			else
+			{
+				testString = board1[i].getCurrentDisplayName();
+			}
+		}
+		else
+		{
+			if (board2[i - 5].checkIfNull())
+			{
+				testString = "  ";
+			}
+			else
+			{
+				testString = board2[i - 5].getCurrentDisplayName();
+			}
+		}
+
+		cardsB[i] = testString;
+	}
+
+
+	if (stealNotRemove)
+	{
+		cout << " ================ STEAL ================ " << endl;
+	}
+	else
+	{
+		cout << " =============== REMOVE ================ " << endl;
+	}
+
+	if (fromHand)
+	{
+		if (stealNotRemove)
+		{
+			cout << " ================ STEAL ================ " << endl;
+		}
+		else
+		{
+			cout << " =============== REMOVE ================ " << endl;
+		}
+
+		cout << "     ___    ___    ___    ___    ___     " << endl;
+		cout << "    |   |  |   |  |   |  |   |  |   |    " << endl;
+		cout << "    | ? |  | ? |  | ? |  | ? |  | ? |    " << endl;
+		cout << "    |___|  |___|  |___|  |___|  |___|    " << endl;
+		cout << "     [1]    [2]    [3]    [4]    [5]     " << endl;
+	}
+	else
+	{
+		if (stealNotRemove)
+		{
+			cout << " ================ STEAL ================ " << endl;
+			cout << "   .________________________________. " << endl;
+			cout << "   |                                | " << endl;
+			cout << "   |   [1]   [2]   [3]   [4]   [5]  | " << endl;
+			cout << "   |   __    __    __    __    __   | " << endl;
+			cout << "   |  |" << cardsB[0] << "|  |" << cardsB[1] << "|  |" << cardsB[2] << "|  |" << cardsB[3] << "|  |" << cardsB[4] << "|  | " << endl;
+			cout << "   |  |__|  |__|  |__|  |__|  |__|  | " << endl;
+			cout << "   |________________________________| " << endl;
+		}
+		else
+		{
+			cout << " =============== REMOVE ================ " << endl;
+			cout << "   .________________________________. " << endl;
+			cout << "   |                                | " << endl;
+			cout << "   |   [1]   [2]   [3]   [4]   [5]  | " << endl;
+			cout << "   |   __    __    __    __    __   | " << endl;
+			cout << "   |  |" << cardsB[0] << "|  |" << cardsB[1] << "|  |" << cardsB[2] << "|  |" << cardsB[3] << "|  |" << cardsB[4] << "|  | " << endl;
+			cout << "   |  |__|  |__|  |__|  |__|  |__|  | " << endl;
+			cout << "   |   __    __    __    __    __   | " << endl;
+			cout << "   |  |" << cardsB[5] << "|  |" << cardsB[6] << "|  |" << cardsB[7] << "|  |" << cardsB[8] << "|  |" << cardsB[9] << "|  | " << endl;
+			cout << "   |  |__|  |__|  |__|  |__|  |__|  | " << endl;
+			cout << "   |                                | " << endl;
+			cout << "   |  [6]   [7]   [8]   [9]   [0]   | " << endl;
+			cout << "   |________________________________| " << endl;
+		}
+	}
 }
 
 string UserInterface::bracketCheck(Card* testCard, bool isTop)

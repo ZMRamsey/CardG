@@ -12,21 +12,21 @@ Hand::Hand()
 
 Hand::Hand(Card cOne, Card cTwo, Card cThree, Card cFour, Card cFive)
 {
-	//one = &cOne;
-	two = &cTwo;
-	three = &cThree;
-	four = &cFour;
-	five = &cFive;
+	one = cOne;
+	two = cTwo;
+	three = cThree;
+	four = cFour;
+	five = cFive;
 	step = 1;
 }
 
 void Hand::addToHand(Card card)
 {
 	if (getFromInt(1).checkIfNull()) { one = card; }
-	else if (getFromInt(2).checkIfNull()) { two = &card; }
-	else if (getFromInt(3).checkIfNull()) { three = &card; }
-	else if (getFromInt(4).checkIfNull()) { four = &card; }
-	else if(getFromInt(5).checkIfNull()) { five = &card; }
+	else if (getFromInt(2).checkIfNull()) { two = card; }
+	else if (getFromInt(3).checkIfNull()) { three = card; }
+	else if (getFromInt(4).checkIfNull()) { four = card; }
+	else if(getFromInt(5).checkIfNull()) { five = card; }
 }
 
 void Hand::fillHand(Card card)
@@ -38,22 +38,22 @@ void Hand::fillHand(Card card)
 	}
 	else if (step == 2)
 	{
-		two = &card;
+		two = card;
 		step++;
 	}
 	else if (step == 3)
 	{
-		three = &card;
+		three = card;
 		step++;
 	}
 	else if (step == 4)
 	{
-		four = &card;
+		four = card;
 		step++;
 	}
 	else if (step == 5)
 	{
-		five = &card;
+		five = card;
 		step++;
 	}
 }
@@ -65,22 +65,22 @@ Card* Hand::getOne()
 
 Card* Hand::getTwo()
 {
-	return two;
+	return &two;
 }
 
 Card* Hand::getThree()
 {
-	return three;
+	return &three;
 }
 
 Card* Hand::getFour()
 {
-	return four;
+	return &four;
 }
 
 Card* Hand::getFive()
 {
-	return five;
+	return &five;
 }
 
 Card Hand::getFromInt(int num)
@@ -115,24 +115,36 @@ int Hand::getNoInHand()
 	return count;
 }
 
-//void Hand::useCard(int num)
-//{
-//	switch (num)
-//	{
-//	case 1:
-//		one = nullCard;
-//	case 2:
-//		two = nullCard;
-//	case 3:
-//		three = nullCard;
-//	case 4:
-//		four = nullCard;
-//	case 5:
-//		five = nullCard;
-//	}
-//}
-
-void Hand::update()
+void Hand::useCard(int num)
 {
+	switch (num)
+	{
+	case 1:
+		one.isNull = true;
+		break;
+	case 2:
+		two.isNull = true;
+		break;
+	case 3:
+		three.isNull = true;
+		break;
+	case 4:
+		four.isNull = true;
+		break;
+	case 5:
+		five.isNull = true;
+		break;
 
+	default:
+		break;
+	}
+}
+
+void Hand::update(int power)
+{
+	one.update(power);
+	two.update(power);
+	three.update(power);
+	four.update(power);
+	five.update(power);
 }

@@ -12,20 +12,21 @@ public:
 	string name;
 	string displayName1;
 	string displayName2;
-	CardType type1;
-	CardType type2;
+	CardType* type1;
+	CardType* type2;
 	int pivot;
-	CardType activeType;
+	CardType* activeType;
 	bool type1Active;
 	bool isNull;
 
 	Card();
 	Card(string, CardType*, CardType*, int, string, string);
-	void activate(int*);
+	void activate(int* power1, int* power2, int* stealRemove);
 	void update(int);
 	string getDisplayName1();
 	string getDisplayName2();
 	string getCurrentDisplayName();
 	bool getTopHighlight();
 	bool checkIfNull();
+	void setActive(bool active);
 };

@@ -14,29 +14,35 @@ CardType::CardType(int type, int change, string name)
 	this->name = name;
 }
 
-void CardType::Effect(int* power)
+void CardType::Effect(int* power, int* enemyPower, int* stealRemove)
 {
 	switch (type)
 	{
 	case 1:
 		//power+
-		power += change;
+		stealRemove = 0;
+		*power += change;
 		break;
 	case 2:
 		//power-
-		power -= change;
+		stealRemove = 0;
+		*enemyPower -= change;
 		break;
 	case 3:
 		//steal from board
+		*stealRemove = 1;
 		break;
 	case 4:
 		//steal from hand
+		*stealRemove = 2;
 		break;
 	case 5:
 		//remove from board
+		*stealRemove = 3;
 		break;
 	case 6:
 		//remove from hand
+		*stealRemove = 4;
 		break;
 	}
 }

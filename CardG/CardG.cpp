@@ -28,6 +28,8 @@ int main()
 	{
 		//play the game
 		board.startMatch();
+		//gui.stealRemoveSelect(true, true);
+		//gui.stealRemoveSelect(false, false);
 	}
 
 	//gui.displayBoard();

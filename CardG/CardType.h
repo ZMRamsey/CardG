@@ -23,6 +23,6 @@ public:
 	
 	CardType();
 	CardType(int type, int change, string name);
-	void Effect(int* power);
+	void Effect(int* power, int* enemyPower, int* stealRemove);
 };
 

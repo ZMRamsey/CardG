@@ -5,10 +5,10 @@ class Hand
 {
 public:
 	Card one;
-	Card* two;
-	Card* three;
-	Card* four;
-	Card* five;
+	Card two;
+	Card three;
+	Card four;
+	Card five;
 
 	int step;
 	//Card nullCard;
@@ -24,7 +24,7 @@ public:
 	Card* getFive();
 	Card getFromInt(int);
 	int getNoInHand();
-	//void useCard(int);
-	void update();
+	void useCard(int);
+	void update(int power);
 };
 

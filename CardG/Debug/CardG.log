@@ -1,9 +1,4 @@
 ﻿  Board.cpp
-c:\users\zoey\documents\coding\owo\cardg\cardg\board.cpp(188): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  CardG.cpp
-  Hand.cpp
-  UserInterface.cpp
-c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(241): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
-c:\users\zoey\documents\coding\owo\cardg\cardg\hand.cpp(104): warning C4715: 'Hand::getFromInt': not all control paths return a value
+c:\users\zoey\documents\coding\owo\cardg\cardg\board.cpp(234): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\zoey\documents\coding\owo\cardg\cardg\board.cpp(195): warning C4715: 'Board::playCard': not all control paths return a value
   CardG.vcxproj -> C:\Users\Zoey\Documents\Coding\OwO\CardG\Debug\CardG.exe
