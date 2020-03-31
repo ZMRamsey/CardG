@@ -6,7 +6,7 @@ class CardBox
 
 public:
 	CardBox();
-	Card allCards[20];
+	Card allCards[22];
 	void createCards();
 };
 

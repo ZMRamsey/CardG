@@ -30,26 +30,28 @@ void CardBox::createCards()
 
 	//Make all cards
 	//Might change to tarot
-	Card* card1 = new Card("Boost", plus1, plus3, 6, "+1", "+3");
-	Card* card2 = new Card("Damage", minus1, minus2, 6, "-1", "-3");
-	Card* card3 = new Card("Hand", removeHand, stealHand, 5, "RH", "SH");
-	Card* card4 = new Card("Balance", plus2, minus2, 3, "+2", "-2");
-	Card* card5 = new Card("Superpower", plus1, plus4, 8, "+1", "+4");
-	Card* card6 = new Card("Board", removeBoard, stealBoard, 5, "RB", "SB");
-	Card* card7 = new Card("Attack", minus3, stealHand, 7, "-3", "SH");
-	Card* card8 = new Card("Resurgance", removeBoard, minus2, 1, "RB", "-2");
-	Card* card9 = new Card("Retaliation", minus4, plus1, 2, "-4", "+1");
-	Card* card10 = new Card("Pickpocket", stealHand, minus1, 2, "SH", "-1");
-	Card* card11 = new Card("Destruction", minus2, removeBoard, 6, "-2", "RB");
-	Card* card12 = new Card("Villain", stealHand, removeBoard, 4, "SH", "RB");
-	Card* card13 = new Card("Thief", stealHand, stealBoard, 6, "SH", "SB");
-	Card* card14 = new Card("Wrecker", removeHand, removeBoard, 6, "RH", "RB");
-	Card* card15 = new Card("Bandages", plus4, plus1, 1, "+4", "+1");
-	Card* card16 = new Card("Elimination", minus1, minus4, 9, "-1", "-4");
-	Card* card17 = new Card("Tactitian", plus3, minus2, 4, "+3", "-2");
-	Card* card18 = new Card("Growth", minus2, plus2, 3, "-2", "+2");
-	Card* card19 = new Card("idk man", plus3, removeBoard, 5, "+3", "RB");
-	Card* card20 = new Card("Temptation", stealHand, plus4, 7, "SH", "+4");
+	Card* card1 = new Card("The Fool", plus1, removeBoard, 5, "+1", "RB"); //really bad card
+	Card* card2 = new Card("The Magician", minus1, minus2, 6, "-1", "-3");
+	Card* card3 = new Card("The High Priestess", removeHand, stealHand, 5, "RH", "SH");
+	Card* card4 = new Card("The Empress", plus2, minus2, 3, "+2", "-2");
+	Card* card5 = new Card("The Emperor", plus1, plus4, 8, "+1", "+4");
+	Card* card6 = new Card("The Hierophant", plus2, minus2, 4, "+2", "-2"); //basic +2/-2
+	Card* card7 = new Card("The Lovers", plus1, stealBoard, 6, "+1", "SB"); //steal from board
+	Card* card8 = new Card("The Chariot", removeBoard, minus2, 1, "RB", "-2"); //
+	Card* card9 = new Card("Justice", plus3, minus2, 2, "+3", "-2"); //+ when weak, - when strong
+	Card* card10 = new Card("The Hermit", plus4, plus1, 1, "+4", "+1"); //big + when weak, small + when strong
+	Card* card11 = new Card("Wheel of Fortune", plus1, stealHand, 5, "??", "??"); //steal from hand, or rubbish +1
+	Card* card12 = new Card("Strength", minus2, plus2, 3, "-2", "+2"); //- when weak, + when strong
+	Card* card13 = new Card("The Hanged Man", removeBoard, minus1, 1, "RB", "-1"); //strong when player is very low
+	Card* card14 = new Card("Death", plus1, minus4, 8, "+1", "-4"); //super strong -4
+	Card* card15 = new Card("Temperance", minus1, plus4, 8, "-1", "+4"); //opposite of death
+	Card* card16 = new Card("The Devil", minus3, stealBoard, 6, "-3", "SB"); //steal and -3
+	Card* card17 = new Card("The Tower", plus3, minus2, 3, "+3", "-2"); //powerful when weakened
+	Card* card18 = new Card("The Star", minus2, plus2, 3, "-2", "+2"); //wish
+	Card* card19 = new Card("The Moon", removeHand, stealHand, 5, "RH", "SH"); //hand
+	Card* card20 = new Card("The Sun", removeBoard, stealBoard, 5, "RB", "SB"); //board
+	Card* card21 = new Card("Judgement", plus3, removeBoard, 5, "+3", "RB"); 
+	Card* card22 = new Card("The World", stealHand, plus4, 7, "SH", "+4"); //basic card
 
 
 	//Put all cards in array
@@ -73,5 +75,7 @@ void CardBox::createCards()
 	allCards[17] = *card18;
 	allCards[18] = *card19;
 	allCards[19] = *card20;
+	allCards[20] = *card21;
+	allCards[21] = *card22;
 
 }

@@ -1,6 +1,4 @@
 #include "Board.h"
-#include <stdlib.h>
-#include <time.h>
 
 Board::Board()
 {
@@ -21,7 +19,8 @@ void Board::startMatch()
 	p2Name = gui->getName();
 
 	//Make AI
-	//AIClass ai = new RandomAI();
+	AIHandler* handler = new AIHandler();
+	ai = handler->createAI(1);
 
 	//Set marker to beginning of deck
 	marker = 0;
@@ -72,26 +71,52 @@ void Board::startMatch()
 bool Board::gameLoop()
 {
 	char resp;
-	
+	int aiChoice;
+
 	while (true)
 	{
 		hand1.update(power1);
 		hand2.update(power2);
 
 	//enemy goes first
-		//draw board
-		//displayBoard();
+		
+		//Reset stealRemove
+		stealRemove = 0;
+	
+		//Draw board
+		displayBoard();
 		
 		//AI picks card
+		aiChoice = ai->chooseCard(hand1);
 
-		//draw board
-		//displayBoard();
+		//Play AI card
+		playCard(1, hand1.getFromInt(aiChoice));
+		hand1.getFromInt(aiChoice).activate(&power1, &power2, &stealRemove);
+		
+		//Steal or remove
+		if (stealRemove != 0)
+		{
+			aiStealOrRemove();
+		}
+
+		//Set card in hand to null
+		hand1.useCard(aiChoice);
+
+		//Draw board
+		displayBoard();
 
 		//card effects
 		
 		//log
 
 	//player turn
+		
+		hand1.update(power1);
+		hand2.update(power2);
+
+		//reset stealRemove
+		stealRemove = 0;
+
 		//draw board
 		displayBoard();
 
@@ -112,7 +137,7 @@ bool Board::gameLoop()
 				{
 					//pick card
 					hand2.getFromInt(num).activate(&power2, &power1, &stealRemove);
-					
+
 					if (!playCard(2, hand2.getFromInt(num)))
 					{
 						//no room on board
@@ -346,7 +371,40 @@ void Board::playerStealOrRemove()
 
 void Board::aiStealOrRemove()
 {
+	int aiChoice;
 
+	if (stealRemove == 1 || stealRemove == 3)
+	{
+		//Board
+		aiChoice = ai->chooseFromBoard(board2);
+		if (stealRemove == 1)
+		{
+			//steal
+			hand1.addToHand(board2[aiChoice]);
+			board1[aiChoice].setActive(false);
+		}
+		else
+		{
+			//remove
+			board1[aiChoice].setActive(false);
+		}
+	}
+	else if (stealRemove == 2 || stealRemove == 4)
+	{
+		//Hand
+		aiChoice = ai->chooseFromHand(hand2);
+		if (stealRemove == 2)
+		{
+			//steal
+			hand1.addToHand(hand2.getFromInt(aiChoice));
+			hand2.getFromInt(aiChoice).setActive(false);
+		}
+		else
+		{
+			//remove
+			hand2.getFromInt(aiChoice).setActive(false);
+		}
+	}
 }
 
 void Board::logTurn()

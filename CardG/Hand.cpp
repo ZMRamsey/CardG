@@ -99,7 +99,7 @@ Card Hand::getFromInt(int num)
 		return *getFive();
 
 	default:
-		break;
+		throw new exception;
 	}
 }
 

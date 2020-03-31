@@ -5,6 +5,8 @@
 #include "UserInterface.h"
 #include "AIClass.h"
 #include "AIHandler.h"
+#include <stdlib.h>
+#include <time.h>
 
 #pragma once
 class Board
@@ -24,6 +26,7 @@ class Board
 	Hand hand1;
 	Hand hand2;
 	UserInterface* gui;
+	AIClass* ai;
 
 public:
 	Board();

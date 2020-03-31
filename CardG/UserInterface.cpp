@@ -12,14 +12,20 @@ void UserInterface::updateGUI(char output)
 char UserInterface::getInput()
 {
 	char resp;
-	cout << "\n>";
-	cin >> resp;
-	return resp;
+	while (true)
+	{
+		cout << "\n>";
+		cin >> resp;
+		return resp;
+	}
 }
 
 string UserInterface::getName()
 {
 	string name;
+
+	cout << "What is your name?" << endl;
+
 	while (true) {
 		cout << "\n>";
 		cin >> name;
@@ -133,7 +139,7 @@ void UserInterface::displayBoard(string enemyName, string playerName, int power1
 
 	//display board
 	cout << " ______________________________________________________ " << endl;
-	cout << "| " << enemyName << " /                                       |" << endl;
+	cout << "|" << enemyName << "/                                       |" << endl;
 	cout << "|_____________/                   " << face << "                |" << endl;
 	cout << "|                                                      |" << endl;
 	cout << "|      _________________________________   _____       |" << endl;
@@ -159,12 +165,12 @@ void UserInterface::displayBoard(string enemyName, string playerName, int power1
 
 void UserInterface::clearScreen()
 {
-	/*for (int i = 0; i < 18; i++)
+	for (int i = 0; i < 18; i++)
 	{
 		cout << "\n";
-	}*/
+	}
 
-	system("CLS");
+	//system("CLS");
 }
 
 void UserInterface::titleScreen()

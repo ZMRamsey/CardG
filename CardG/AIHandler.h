@@ -5,6 +5,10 @@
 class AIHandler
 {
 public:
-	void createAI(int version);
+	AIClass* randomAI;
+	AIClass* smartAI;
+	AIClass* stupidAI;
+	
+	AIClass* createAI(int version);
 };
 

@@ -4,12 +4,17 @@ AIClass::AIClass()
 {
 }
 
-int AIClass::chooseCard()
+int AIClass::chooseCard(Hand hand)
 {
 	return 0;
 }
 
-int AIClass::chooseStealRemove()
+int AIClass::chooseFromHand(Hand hand)
+{
+	return 0;
+}
+
+int AIClass::chooseFromBoard(Card board [5])
 {
 	return 0;
 }
