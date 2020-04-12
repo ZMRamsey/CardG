@@ -40,7 +40,7 @@ void CardBox::createCards()
 	Card* card8 = new Card("The Chariot", removeBoard, minus2, 1, "RB", "-2"); //
 	Card* card9 = new Card("Justice", plus3, minus2, 2, "+3", "-2"); //+ when weak, - when strong
 	Card* card10 = new Card("The Hermit", plus4, plus1, 1, "+4", "+1"); //big + when weak, small + when strong
-	Card* card11 = new Card("Wheel of Fortune", plus1, stealHand, 5, "??", "??"); //steal from hand, or rubbish +1
+	Card* card11 = new Card("Wheel of Fortune", plus1, stealHand, 5, "+1", "SH"); //steal from hand, or rubbish +1
 	Card* card12 = new Card("Strength", minus2, plus2, 3, "-2", "+2"); //- when weak, + when strong
 	Card* card13 = new Card("The Hanged Man", removeBoard, minus1, 1, "RB", "-1"); //strong when player is very low
 	Card* card14 = new Card("Death", plus1, minus4, 8, "+1", "-4"); //super strong -4

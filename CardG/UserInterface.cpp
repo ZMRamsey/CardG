@@ -53,11 +53,18 @@ void UserInterface::displayBoard(string enemyName, string playerName, int power1
 	}
 
 	//names are 13 characters long
-
-	//TODO: Make face react to difference in power levels
 	
 	//Enemy avatar, must be 5 characters
-	string face = " OwO ";
+	string face;
+	
+	if (power1 > power2)
+	{
+		face = " UwU ";
+	}
+	else
+	{
+		face = " OwO ";
+	}
 
 	string cardsB[10];
 	for (int i = 0; i < 10; i++)
@@ -237,7 +244,7 @@ void UserInterface::showHand()
 	//Show full hand when player asks
 }
 
-void UserInterface::stealRemoveSelect(bool stealNotRemove, bool fromHand, Card board1[5], Card board2[5])
+void UserInterface::stealRemoveSelect(bool stealNotRemove, bool fromHand, Card board1[5], Card board2[5], Hand hand)
 {
 	string cardsB[10];
 	for (int i = 0; i < 10; i++)
@@ -281,18 +288,26 @@ void UserInterface::stealRemoveSelect(bool stealNotRemove, bool fromHand, Card b
 
 	if (fromHand)
 	{
-		if (stealNotRemove)
-		{
-			cout << " ================ STEAL ================ " << endl;
-		}
-		else
-		{
-			cout << " =============== REMOVE ================ " << endl;
-		}
+		string card1, card2, card3, card4, card5;
+		if (hand.getOne()->checkIfNull()) { card1 = " "; }
+		else { card1 = "?" ; }
+
+		if (hand.getTwo()->checkIfNull()) { card2 = " "; }
+		else { card2 = "?"; }
+		
+		if (hand.getThree()->checkIfNull()) { card3 = " "; }
+		else { card3 = "?"; }
+		
+		if (hand.getFour()->checkIfNull()) { card4 = " "; }
+		else { card4 = "?"; }
+
+		if (hand.getFive()->checkIfNull()) { card5 = " "; }
+		else { card5 = "?"; }
+
 
 		cout << "     ___    ___    ___    ___    ___     " << endl;
 		cout << "    |   |  |   |  |   |  |   |  |   |    " << endl;
-		cout << "    | ? |  | ? |  | ? |  | ? |  | ? |    " << endl;
+		cout << "    | " << card1 << " |  | " << card2 << " |  | " << card3 << " |  | " << card4 << " |  | " << card5 << " |    " << endl;
 		cout << "    |___|  |___|  |___|  |___|  |___|    " << endl;
 		cout << "     [1]    [2]    [3]    [4]    [5]     " << endl;
 	}
@@ -300,7 +315,7 @@ void UserInterface::stealRemoveSelect(bool stealNotRemove, bool fromHand, Card b
 	{
 		if (stealNotRemove)
 		{
-			cout << " ================ STEAL ================ " << endl;
+			//cout << " ================ STEAL ================ " << endl;
 			cout << "   .________________________________. " << endl;
 			cout << "   |                                | " << endl;
 			cout << "   |   [1]   [2]   [3]   [4]   [5]  | " << endl;
@@ -311,7 +326,7 @@ void UserInterface::stealRemoveSelect(bool stealNotRemove, bool fromHand, Card b
 		}
 		else
 		{
-			cout << " =============== REMOVE ================ " << endl;
+			//cout << " =============== REMOVE ================ " << endl;
 			cout << "   .________________________________. " << endl;
 			cout << "   |                                | " << endl;
 			cout << "   |   [1]   [2]   [3]   [4]   [5]  | " << endl;

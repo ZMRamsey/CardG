@@ -18,7 +18,7 @@ class UserInterface
 		void mainMenu();
 		void cardSelect(Card, Card);
 		void showHand();
-		void stealRemoveSelect(bool stealNotRemove, bool fromHand, Card[5], Card[5]);
+		void stealRemoveSelect(bool stealNotRemove, bool fromHand, Card[5], Card[5], Hand hand);
 		string bracketCheck(Card* card, bool isTop);
 		string fixLength(string starter, int length);
 };

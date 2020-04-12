@@ -61,6 +61,7 @@ void Board::startMatch()
 	if (victory)
 	{
 		//Win screen
+		
 	}
 	else
 	{
@@ -78,7 +79,7 @@ bool Board::gameLoop()
 		hand1.update(power1);
 		hand2.update(power2);
 
-	//enemy goes first
+		//Enemy goes first
 		
 		//Reset stealRemove
 		stealRemove = 0;
@@ -104,8 +105,6 @@ bool Board::gameLoop()
 
 		//Draw board
 		displayBoard();
-
-		//card effects
 		
 		//log
 
@@ -166,12 +165,45 @@ bool Board::gameLoop()
 		displayBoard();
 
 		//log
+	
+		//Check endgame conditions
+		if ((hand1.getNoInHand() == 0 || hand2.getNoInHand() == 0))
+		{
+			//1: Neither player has cards
+			if ((hand1.getNoInHand() == 0) && (hand2.getNoInHand() == 0))
+			{
+				//Game is over properly
+				return power2 > power1;
+			}
 
-	//Check special like steals and removes
-	//Check for victory
+			//2: Player 1 has no cards, Player 2 only has steal/remove from hand
+			if ((hand1.getNoInHand() == 0) && (hand2.onlyUsesHand()))
+			{
+				int bonus = 0;
+				//Convert remaining cards to +1s
+				for (int i = 0; i < 5; i++)
+				{
+					if ((hand2.getFromInt(i).getCurrentDisplayName == "RH") || (hand2.getFromInt(i).getCurrentDisplayName == "RH"))
+					{
+						bonus++;
+					}
+				}
+
+				//Calculate scores and end
+				return power2 > power1;
+			}
+
+			//3: Player 2 has no cards, Player 1 only has steal/remove from hand
+			if ((hand2.getNoInHand() == 0) && (hand1.onlyUsesHand()))
+			{
+				//Convert remaining cards to +1s
+				//Calculate scores and end
+				return power2 > power1;
+			}
+		}
 	}
 	
-	return power2 > power1;
+	return false;
 }
 
 void Board::displayBoard()
@@ -274,12 +306,12 @@ void Board::playerStealOrRemove()
 	{
 	case 1:
 		//SB
-		gui->stealRemoveSelect(true, false, board1, board2);
+		gui->stealRemoveSelect(true, false, board1, board2, hand1);
 
 		while (true)
 		{
 			choice = gui->getInput();
-			if (choice = '1', '2', '3', '4', '5')
+			if (choice == '1', '2', '3', '4', '5')
 			{
 				if (!(board1[choice - '0'].checkIfNull()))
 				{
@@ -295,12 +327,12 @@ void Board::playerStealOrRemove()
 
 	case 2:
 		//SH
-		gui->stealRemoveSelect(true, true, board1, board2);
+		gui->stealRemoveSelect(true, true, board1, board2, hand1);
 
 		while (true)
 		{
 			choice = gui->getInput();
-			if (choice = '1', '2', '3', '4', '5')
+			if (choice == '1', '2', '3', '4', '5')
 			{
 				if (!hand1.getFromInt(choice - '0').checkIfNull())
 				{
@@ -316,12 +348,12 @@ void Board::playerStealOrRemove()
 
 	case 3:
 		//RB
-		gui->stealRemoveSelect(false, false, board1, board2);
+		gui->stealRemoveSelect(false, false, board1, board2, hand1);
 
 		while (true)
 		{
 			choice = gui->getInput();
-			if (choice = '1', '2', '3', '4', '5')
+			if (choice == '1', '2', '3', '4', '5')
 			{
 				if (!board1[choice - '0'].checkIfNull())
 				{
@@ -330,7 +362,7 @@ void Board::playerStealOrRemove()
 					return;
 				}
 			}
-			if (choice = '6', '7', '8', '9', '0')
+			if (choice == '6', '7', '8', '9', '0')
 			{
 				if (!board2[choice - '0'].checkIfNull())
 				{
@@ -345,12 +377,12 @@ void Board::playerStealOrRemove()
 
 	case 4:
 		//RH
-		gui->stealRemoveSelect(false, true, board1, board2);
+		gui->stealRemoveSelect(false, true, board1, board2, hand1);
 
 		while (true)
 		{
-			choice = gui->getInput();
-			if (choice = '1', '2', '3', '4', '5')
+			char choice = gui->getInput();
+			if (choice == '1', '2', '3', '4', '5')
 			{
 				if (!hand1.getFromInt(choice - '0').checkIfNull())
 				{

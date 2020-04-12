@@ -140,6 +140,19 @@ void Hand::useCard(int num)
 	}
 }
 
+bool Hand::onlyUsesHand()
+{
+	for (int i = 0; i < 5; i++)
+	{
+		//If the card is neither a steal from hand or remove from hand
+		if (!(getFromInt(i).getCurrentDisplayName() == "SH") && !(getFromInt(i).getCurrentDisplayName() == "RH"))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
 void Hand::update(int power)
 {
 	one.update(power);
