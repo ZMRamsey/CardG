@@ -22,6 +22,7 @@ public:
 	Card();
 	Card(string, CardType*, CardType*, int, string, string);
 	void activate(int* power1, int* power2, int* stealRemove);
+	void deactivate(int* power1, int* power2);
 	void update(int);
 	string getDisplayName1();
 	string getDisplayName2();

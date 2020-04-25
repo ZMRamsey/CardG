@@ -16,13 +16,17 @@ Card::Card(string name, CardType* type1, CardType* type2, int pivot, string disp
 	this->pivot = pivot;
 	this->displayName1 = displayName1;
 	this->displayName2 = displayName2;
-
-	isNull = false;
 }
 
 void Card::activate(int* power1, int* power2, int* stealNotRemove)
 {
-	activeType->Effect(power1, power2, stealNotRemove);
+	activeType->Effect(power1, power2, stealNotRemove, false);
+}
+
+void Card::deactivate(int * power1, int * power2)
+{
+	int steal = 0;
+	activeType->Effect(power1, power2, &steal, true);
 }
 
 void Card::update(int power)

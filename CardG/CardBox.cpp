@@ -12,21 +12,21 @@ CardBox::CardBox()
 void CardBox::createCards()
 {
 	//Make all card types
-	CardType* plus1 = new CardType(1, 1, "Power +1");
-	CardType* plus2 = new CardType(1, 2, "Power +2");
-	CardType* plus3 = new CardType(1, 3, "Power +3");
-	CardType* plus4 = new CardType(1, 4, "Power +4");
+	CardType* plus1 = new CardType(1, 1, "Power +1", 1);
+	CardType* plus2 = new CardType(1, 2, "Power +2", 2);
+	CardType* plus3 = new CardType(1, 3, "Power +3", 5);
+	CardType* plus4 = new CardType(1, 4, "Power +4", 8);
 
-	CardType* minus1 = new CardType(2, 1, "Power -1");
-	CardType* minus2 = new CardType(2, 2, "Power -2");
-	CardType* minus3 = new CardType(2, 3, "Power -3");
-	CardType* minus4 = new CardType(2, 4, "Power -4");
+	CardType* minus1 = new CardType(2, 1, "Power -1", 1);
+	CardType* minus2 = new CardType(2, 2, "Power -2", 2);
+	CardType* minus3 = new CardType(2, 3, "Power -3", 5);
+	CardType* minus4 = new CardType(2, 4, "Power -4", 8);
 
-	CardType* stealBoard = new CardType(3, 0, "Steal from Board");
-	CardType* stealHand = new CardType(4, 0, "Steal from Hand");
+	CardType* stealBoard = new CardType(3, 0, "Steal from Board", 7);
+	CardType* stealHand = new CardType(4, 0, "Steal from Hand", 4);
 
-	CardType* removeBoard = new CardType(5, 0, "Remove from Board");
-	CardType* removeHand = new CardType(6, 0, "Remove from Hand");
+	CardType* removeBoard = new CardType(5, 0, "Remove from Board", 6);
+	CardType* removeHand = new CardType(6, 0, "Remove from Hand", 3);
 
 	//Make all cards
 	//Might change to tarot

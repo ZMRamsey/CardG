@@ -25,7 +25,7 @@ public:
 	Card getFromInt(int);
 	int getNoInHand();
 	void useCard(int);
-	bool onlyUsesHand();
+	int onlyUsesHand();
 	void update(int power);
 };
 

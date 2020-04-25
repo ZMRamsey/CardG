@@ -7,26 +7,29 @@ CardType::CardType()
 	name = " ";
 }
 
-CardType::CardType(int type, int change, string name)
+CardType::CardType(int type, int change, string name, int ranking)
 {
 	this->type = type;
 	this->change = change;
 	this->name = name;
+	AIRanking = ranking;
 }
 
-void CardType::Effect(int* power, int* enemyPower, int* stealRemove)
+void CardType::Effect(int* power, int* enemyPower, int* stealRemove, bool undo)
 {
 	switch (type)
 	{
 	case 1:
 		//power+
 		stealRemove = 0;
-		*power += change;
+		if (undo) { *power -= change; }
+		else { *power += change; }
 		break;
 	case 2:
 		//power-
 		stealRemove = 0;
-		*enemyPower -= change;
+		if (undo) { *enemyPower += change; }
+		else { *enemyPower -= change; }
 		break;
 	case 3:
 		//steal from board

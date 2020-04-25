@@ -1,6 +1,4 @@
 #include "UserInterface.h"
-#include <string>
-#include <iostream>
 
 using namespace std;
 
@@ -22,9 +20,7 @@ char UserInterface::getInput()
 
 string UserInterface::getName()
 {
-	string name;
-
-	cout << "What is your name?" << endl;
+	cout << "\nWhat is your name?" << endl;
 
 	while (true) {
 		cout << "\n>";
@@ -165,19 +161,19 @@ void UserInterface::displayBoard(string enemyName, string playerName, int power1
 	cout << "| |____|   |____|   |____|   |____|   |____|           |" << endl;
 	cout << "|  [1]      [2]      [3]      [4]      [5]             |" << endl;
 	cout << "|______________________________________________________|" << endl;
-	cout << " [q] Quit  [h] Hand  [b] Board    \\ " << playerName << "     |" << endl;
+	cout << " [q] Quit  [h] Hand               \\ " << playerName << "     |" << endl;
 	cout << "                                   \\___________________|" << endl;
 
 }
 
 void UserInterface::clearScreen()
 {
-	for (int i = 0; i < 18; i++)
-	{
-		cout << "\n";
-	}
+	//for (int i = 0; i < 18; i++)
+	//{
+	//	cout << "\n";
+	//}
 
-	//system("CLS");
+	system("CLS");
 }
 
 void UserInterface::titleScreen()
@@ -315,7 +311,6 @@ void UserInterface::stealRemoveSelect(bool stealNotRemove, bool fromHand, Card b
 	{
 		if (stealNotRemove)
 		{
-			//cout << " ================ STEAL ================ " << endl;
 			cout << "   .________________________________. " << endl;
 			cout << "   |                                | " << endl;
 			cout << "   |   [1]   [2]   [3]   [4]   [5]  | " << endl;
@@ -326,7 +321,6 @@ void UserInterface::stealRemoveSelect(bool stealNotRemove, bool fromHand, Card b
 		}
 		else
 		{
-			//cout << " =============== REMOVE ================ " << endl;
 			cout << "   .________________________________. " << endl;
 			cout << "   |                                | " << endl;
 			cout << "   |   [1]   [2]   [3]   [4]   [5]  | " << endl;
@@ -402,5 +396,98 @@ string UserInterface::fixLength(string starter, int length)
 	}
 	
 	return starter;
+}
+
+void UserInterface::victoryScreen(bool playerWin, int power1, int power2)
+{
+	string victory;
+	if (playerWin) { victory = name + " wins!!!"; }
+	else { victory = "GAME OVER"; }
+
+	cout << victory << endl;
+	cout << "-----------------" << endl;
+	cout << "|  FINAL SCORE  |" << endl;
+	cout << "-----------------" << endl;
+	cout << " " << name << ":  " << power2 << endl;
+	cout << " AI:  " << power1 << endl;
+	cout << "-----------------" << endl;
+}
+
+void UserInterface::chooseAI()
+{
+	cout << endl;
+	cout << "Which opponent will you face?" << endl;
+	cout << "[3] Smart AI (Hard)" << endl;
+	cout << "[2] Random AI (Med)" << endl;
+	cout << "[1] Stupid AI (Easy)" << endl;
+}
+
+//Shows the player their hand during the game to give more details of cards
+int UserInterface::viewHand(Hand playerHand, int cardNum, int power)
+{
+	Card card;
+	clearScreen();
+
+	while (true)
+	{
+		int num = cardNum;
+		card = playerHand.getFromInt(cardNum);
+		if (card.checkIfNull() == false)
+		{ 
+			break;
+		}
+		else
+		{
+			cardNum++;
+			if (cardNum > 5) { cardNum = 1; }
+		}
+	}
+
+	//Assign strings and fix lengths to make it look good
+	string cardName = card.name;
+	string effect1 = card.type1->name;
+	string effect2 = card.type2->name;
+	int pivot = card.pivot;
+	
+	if (power <= pivot)
+	{
+		effect1 = "(" + effect1 + ")";
+	}
+	else
+	{
+		effect2 = "(" + effect2 + ")";
+	}
+
+	cardName = fixLength(cardName, 17);
+	effect1 = fixLength(effect1, 17);
+	effect2 = fixLength(effect2, 17);
+
+
+	
+	cout << "  ___________________ " << endl;
+	cout << " | " << cardName << " | " << endl;
+	cout << " |///////////////////| " << endl;
+	cout << " | " << effect1 << " | " << endl;
+	cout << " |                   | " << endl;
+	cout << " |-------------------| " << endl;
+	cout << " | " << effect2 << " | " << endl;
+	cout << " |         __________| " << endl;
+	cout << " |        / PIVOT: " << pivot << " | " << endl;
+	cout << " |_______/___________| " << endl;
+	cout << "                       " << endl;
+	cout << "  [1] Previous " << endl;
+	cout << "  [2] Next " << endl;
+	cout << "  [p] Play card " << endl;
+	cout << "  [b] Back " << endl;
+
+	return cardNum;
+}
+
+//Debugging Tool
+void UserInterface::print(string str, bool check)
+{
+	cout << "PRINTOUT:" << endl;
+	cout << str << endl;
+	cout << check << endl;
 }
 

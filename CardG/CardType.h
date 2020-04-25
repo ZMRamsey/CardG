@@ -19,10 +19,13 @@ public:
 
 	//Level of power+/-
 	int change;
+
+	//How useful the type is to an AI
+	int AIRanking;
 	
 	
 	CardType();
-	CardType(int type, int change, string name);
-	void Effect(int* power, int* enemyPower, int* stealRemove);
+	CardType(int type, int change, string name, int ranking);
+	void Effect(int* power, int* enemyPower, int* stealRemove, bool undo);
 };
 

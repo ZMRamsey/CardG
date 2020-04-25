@@ -1,0 +1,171 @@
+========GAME LOG========
+TURN 0
+
+AI's Hand:
+The Chariot  ( Remove from Board, Power -2 )  PIVOT: 1
+The Hermit  ( Power +4, Power +1 )  PIVOT: 1
+The Fool  ( Power +1, Remove from Board )  PIVOT: 5
+Temperance  ( Power -1, Power +4 )  PIVOT: 8
+Death  ( Power +1, Power -4 )  PIVOT: 8
+Zoey's Hand:
+The Star  ( Power -2, Power +2 )  PIVOT: 3
+The Emperor  ( Power +1, Power +4 )  PIVOT: 8
+Justice  ( Power +3, Power -2 )  PIVOT: 2
+The Empress  ( Power +2, Power -2 )  PIVOT: 3
+The Lovers  ( Power +1, Steal from Board )  PIVOT: 6
+
+=====The Board=====
+-2  --  --  --  --  
+
+--  --  --  --  --  
+
+AI played The Chariot while it had the effect Power -2
+Zoey's Power Level: 1
+AI's Power Level: 3
+
+ 
+ 
+
+TURN 1
+
+AI's Hand:
+The Hermit  ( Power +4, Power +1 )  PIVOT: 1
+The Fool  ( Power +1, Remove from Board )  PIVOT: 5
+Temperance  ( Power -1, Power +4 )  PIVOT: 8
+Death  ( Power +1, Power -4 )  PIVOT: 8
+Zoey's Hand:
+The Star  ( Power -2, Power +2 )  PIVOT: 3
+The Emperor  ( Power +1, Power +4 )  PIVOT: 8
+Justice  ( Power +3, Power -2 )  PIVOT: 2
+The Empress  ( Power +2, Power -2 )  PIVOT: 3
+The Lovers  ( Power +1, Steal from Board )  PIVOT: 6
+
+=====The Board=====
+-2  --  --  --  --  
+
++3  --  --  --  --  
+
+Zoey played Justice while it had the effect Power +3
+Zoey's Power Level: 4
+AI's Power Level: 3
+
+ 
+ 
+
+TURN 2
+
+AI's Hand:
+The Hermit  ( Power +4, Power +1 )  PIVOT: 1
+The Fool  ( Power +1, Remove from Board )  PIVOT: 5
+Temperance  ( Power -1, Power +4 )  PIVOT: 8
+Death  ( Power +1, Power -4 )  PIVOT: 8
+Zoey's Hand:
+The Star  ( Power -2, Power +2 )  PIVOT: 3
+The Emperor  ( Power +1, Power +4 )  PIVOT: 8
+The Empress  ( Power +2, Power -2 )  PIVOT: 3
+The Lovers  ( Power +1, Steal from Board )  PIVOT: 6
+
+=====The Board=====
+-2  +1  --  --  --  
+
++3  --  --  --  --  
+
+AI played The Hermit while it had the effect Power +1
+Zoey's Power Level: 4
+AI's Power Level: 4
+
+ 
+ 
+
+TURN 3
+
+AI's Hand:
+The Fool  ( Power +1, Remove from Board )  PIVOT: 5
+Temperance  ( Power -1, Power +4 )  PIVOT: 8
+Death  ( Power +1, Power -4 )  PIVOT: 8
+Zoey's Hand:
+The Star  ( Power -2, Power +2 )  PIVOT: 3
+The Emperor  ( Power +1, Power +4 )  PIVOT: 8
+The Empress  ( Power +2, Power -2 )  PIVOT: 3
+The Lovers  ( Power +1, Steal from Board )  PIVOT: 6
+
+=====The Board=====
+-2  +1  --  --  --  
+
++3  +2  --  --  --  
+
+Zoey played The Star while it had the effect Power +2
+Zoey's Power Level: 6
+AI's Power Level: 4
+
+ 
+ 
+
+TURN 4
+
+AI's Hand:
+The Fool  ( Power +1, Remove from Board )  PIVOT: 5
+Temperance  ( Power -1, Power +4 )  PIVOT: 8
+Death  ( Power +1, Power -4 )  PIVOT: 8
+Zoey's Hand:
+The Emperor  ( Power +1, Power +4 )  PIVOT: 8
+The Empress  ( Power +2, Power -2 )  PIVOT: 3
+The Lovers  ( Power +1, Steal from Board )  PIVOT: 6
+
+=====The Board=====
+-2  +1  +1  --  --  
+
++3  +2  --  --  --  
+
+AI played The Fool while it had the effect Power +1
+Zoey's Power Level: 6
+AI's Power Level: 5
+
+ 
+ 
+
+TURN 5
+
+AI's Hand:
+Temperance  ( Power -1, Power +4 )  PIVOT: 8
+Death  ( Power +1, Power -4 )  PIVOT: 8
+Zoey's Hand:
+The Hermit  ( Power +4, Power +1 )  PIVOT: 1
+The Emperor  ( Power +1, Power +4 )  PIVOT: 8
+The Empress  ( Power +2, Power -2 )  PIVOT: 3
+The Lovers  ( Power +1, Steal from Board )  PIVOT: 6
+
+=====The Board=====
+-2  --  +1  --  --  
+
++3  +2  --  --  --  
+
+Zoey played The Lovers while it had the effect Steal from Board
+Zoey's Power Level: 6
+AI's Power Level: 4
+
+ 
+ 
+
+TURN 6
+
+AI's Hand:
+Temperance  ( Power -1, Power +4 )  PIVOT: 8
+Death  ( Power +1, Power -4 )  PIVOT: 8
+Zoey's Hand:
+The Hermit  ( Power +4, Power +1 )  PIVOT: 1
+The Emperor  ( Power +1, Power +4 )  PIVOT: 8
+The Empress  ( Power +2, Power -2 )  PIVOT: 3
+
+=====The Board=====
+-2  -1  +1  --  --  
+
++3  +2  --  --  --  
+
+AI played Temperance while it had the effect Power -1
+Zoey's Power Level: 5
+AI's Power Level: 4
+
+ 
+ 
+

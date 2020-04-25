@@ -99,7 +99,7 @@ Card Hand::getFromInt(int num)
 		return *getFive();
 
 	default:
-		throw new exception;
+		throw new exception("Num not in range" + num);
 	}
 }
 
@@ -120,19 +120,19 @@ void Hand::useCard(int num)
 	switch (num)
 	{
 	case 1:
-		one.isNull = true;
+		one.setActive(false);
 		break;
 	case 2:
-		two.isNull = true;
+		two.setActive(false);
 		break;
 	case 3:
-		three.isNull = true;
+		three.setActive(false);
 		break;
 	case 4:
-		four.isNull = true;
+		four.setActive(false);
 		break;
 	case 5:
-		five.isNull = true;
+		five.setActive(false);
 		break;
 
 	default:
@@ -140,17 +140,19 @@ void Hand::useCard(int num)
 	}
 }
 
-bool Hand::onlyUsesHand()
+int Hand::onlyUsesHand()
 {
-	for (int i = 0; i < 5; i++)
+	int bonus = 0;
+	
+	for (int i = 1; i < 6; i++)
 	{
 		//If the card is neither a steal from hand or remove from hand
-		if (!(getFromInt(i).getCurrentDisplayName() == "SH") && !(getFromInt(i).getCurrentDisplayName() == "RH"))
+		if ((getFromInt(i).getCurrentDisplayName() == "SH") && (getFromInt(i).getCurrentDisplayName() == "RH"))
 		{
-			return false;
+			bonus++;
 		}
 	}
-	return true;
+	return bonus;
 }
 
 void Hand::update(int power)

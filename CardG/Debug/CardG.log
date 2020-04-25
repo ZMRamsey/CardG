@@ -1,15 +1,2 @@
-﻿  AIClass.cpp
-  AIHandler.cpp
-c:\users\zoey\documents\coding\owo\cardg\cardg\aihandler.cpp(14): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\zoey\documents\coding\owo\cardg\cardg\aihandler.cpp(25): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\zoey\documents\coding\owo\cardg\cardg\aihandler.cpp(36): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Board.cpp
-c:\users\zoey\documents\coding\owo\cardg\cardg\board.cpp(281): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  CardG.cpp
-  Hand.cpp
-  UserInterface.cpp
-c:\users\zoey\documents\coding\owo\cardg\cardg\userinterface.cpp(390): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
-c:\users\zoey\documents\coding\owo\cardg\cardg\board.cpp(242): warning C4715: 'Board::playCard': not all control paths return a value
-c:\users\zoey\documents\coding\owo\cardg\cardg\aihandler.cpp(61): warning C4715: 'AIHandler::createAI': not all control paths return a value
+﻿  CardType.cpp
   CardG.vcxproj -> C:\Users\Zoey\Documents\Coding\OwO\CardG\Debug\CardG.exe

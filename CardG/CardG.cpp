@@ -3,6 +3,7 @@
 #include "Hand.h"
 #include "Card.h"
 #include "Board.h"
+#include "Logger.h"
 #include <stdlib.h>
 
 int main()
@@ -18,21 +19,21 @@ int main()
 	while (true)
 	{
 		resp = gui.getInput();
-		if ((resp == 'p') || (resp == 'q')){ break; }
-	}
-	if (resp == 'q')
-	{
-		exit(EXIT_SUCCESS);
-	}
-	else
-	{
-		//play the game
-		board.startMatch();
-	}
+		if ((resp == 'p') || (resp == 'q'))
+		{ 
+			if (resp == 'q')
+			{
+				exit(EXIT_SUCCESS);
+			}
+			else
+			{
+				//play the game
+				board.startMatch();
 
-	//gui.displayBoard();
-
-	//gui.clearScreen();
-
-	//gui.displayBoard();
+				//Return to title
+				gui.titleScreen();
+				gui.mainMenu();
+			}
+		}
+	}
 }

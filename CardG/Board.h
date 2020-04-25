@@ -5,6 +5,7 @@
 #include "UserInterface.h"
 #include "AIClass.h"
 #include "AIHandler.h"
+#include "Logger.h"
 #include <stdlib.h>
 #include <time.h>
 
@@ -22,11 +23,12 @@ class Board
 	string p2Name;
 	Card board1[5];
 	Card board2[5];
-	Card deck[20];
+	Card deck[22];
 	Hand hand1;
 	Hand hand2;
 	UserInterface* gui;
 	AIClass* ai;
+	Logger* loggy;
 
 public:
 	Board();
@@ -40,5 +42,6 @@ public:
 	void shuffleCards();
 	void playerStealOrRemove();
 	void aiStealOrRemove();
-	void logTurn();
+	char displayHand();
+	void logTurn(Card cardUsed, bool playerTurn);
 };

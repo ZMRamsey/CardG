@@ -18,21 +18,38 @@ void Board::startMatch()
 	p1Name = "AI";
 	p2Name = gui->getName();
 
-	//Make AI
+	//Make AI Handler
 	AIHandler* handler = new AIHandler();
-	ai = handler->createAI(1);
+
+	//Select AI
+	gui->chooseAI();
+	while (true)
+	{
+		char aiSelect = gui->getInput();
+
+		if ((aiSelect - '0' >= 1) && (aiSelect - '0' <= 3))
+		{
+			ai = handler->createAI(aiSelect - '0');
+			break;
+		}
+	}
+
+	//Create Logger and Log
+	loggy = new Logger();
+	loggy->newLog();
 
 	//Set marker to beginning of deck
 	marker = 0;
 
 	//Copy the cards across to the deck
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < 22; i++)
 	{
 		deck[i] = box.allCards[i];
 	}
 
 	Card nullCard;
-	nullCard.isNull = true;
+	bool shootMEINTHESKULLPLS = true;
+	nullCard.isNull = &shootMEINTHESKULLPLS;
 
 	for (int i = 0; i < 5; i++)
 	{
@@ -42,7 +59,6 @@ void Board::startMatch()
 	{
 		board2[i] = nullCard;
 	}
-
 
 	//Shuffle the deck
 	shuffleCards();
@@ -58,15 +74,7 @@ void Board::startMatch()
 	bool victory = gameLoop();
 
 	//Win or loss screen
-	if (victory)
-	{
-		//Win screen
-		
-	}
-	else
-	{
-		//Loss screen
-	}
+	gui->victoryScreen(victory, power1, power2);
 }
 
 bool Board::gameLoop()
@@ -80,91 +88,131 @@ bool Board::gameLoop()
 		hand2.update(power2);
 
 		//Enemy goes first
-		
-		//Reset stealRemove
-		stealRemove = 0;
-	
-		//Draw board
-		displayBoard();
-		
-		//AI picks card
-		aiChoice = ai->chooseCard(hand1);
-
-		//Play AI card
-		playCard(1, hand1.getFromInt(aiChoice));
-		hand1.getFromInt(aiChoice).activate(&power1, &power2, &stealRemove);
-		
-		//Steal or remove
-		if (stealRemove != 0)
+		if (hand1.getNoInHand() > 0)
 		{
-			aiStealOrRemove();
+			//Reset stealRemove
+			stealRemove = 0;
+
+			//Draw board
+			displayBoard();
+
+			//AI picks card
+			aiChoice = ai->chooseCard(hand1);
+
+			//Play AI card
+			hand1.getFromInt(aiChoice).activate(&power1, &power2, &stealRemove);
+
+			//Steal or remove
+			if (stealRemove != 0)
+			{
+				aiStealOrRemove();
+			}
+			else
+			{
+				playCard(1, hand1.getFromInt(aiChoice));
+			}
+
+			//Log move
+			logTurn(hand1.getFromInt(aiChoice), false);
+
+			//Set card in hand to null
+			hand1.useCard(aiChoice);
+
 		}
 
-		//Set card in hand to null
-		hand1.useCard(aiChoice);
-
 		//Draw board
 		displayBoard();
 		
-		//log
+		//Check endgame conditions
+		if ((hand1.getNoInHand() == 0 || hand2.getNoInHand() == 0))
+		{
+			//1: Neither player has cards
+			if ((hand1.getNoInHand() == 0) && (hand2.getNoInHand() == 0))
+			{
+				//Game is over properly
+				return power2 > power1;
+			}
 
-	//player turn
-		
+			//2: Player 1 has no cards, Player 2 only has steal/remove from hand
+			if ((hand1.getNoInHand() == 0) && (hand2.onlyUsesHand() > 0))
+			{
+				//Calculate scores and end
+				power2 += hand2.onlyUsesHand();
+				return power2 > power1;
+			}
+
+			//3: Player 2 has no cards, Player 1 only has steal/remove from hand
+			if ((hand2.getNoInHand() == 0) && (hand1.onlyUsesHand() > 0))
+			{
+				//Calculate scores and end
+				power1 += hand1.onlyUsesHand();
+				return power2 > power1;
+			}
+		}
+
+
+		//PLAYER TURN
 		hand1.update(power1);
 		hand2.update(power2);
 
-		//reset stealRemove
+		//Reset stealRemove
 		stealRemove = 0;
 
-		//draw board
+		//Draw board
 		displayBoard();
 
-		//player picks card
-		while (true) {
-			resp = gui->getInput();
-			int num = resp - '0';
+		if (hand2.getNoInHand() > 0)
+		{
+			//Player picks card
+			while (true) {
+				resp = gui->getInput();
 
-			if (resp == 'q')
-			{
-				//quit
-				return false;
-				break;
-			}
-			else if (resp == '1', '2', '3', '4', '5')
-			{
-				if (!hand2.getFromInt(num).checkIfNull())
+				if (resp == 'q')
 				{
-					//pick card
-					hand2.getFromInt(num).activate(&power2, &power1, &stealRemove);
-
-					if (!playCard(2, hand2.getFromInt(num)))
-					{
-						//no room on board
-					}
-					else
-					{
-						if (stealRemove != 0)
-						{
-							playerStealOrRemove();
-						}
-
-						hand2.useCard(num);
-					}
-
+					//quit
+					return false;
 					break;
 				}
-			}
-			else if (resp == 'h')
-			{
-				//check hand in detail
-				break;
+				if (resp == 'h')
+				{
+					//Check hand in detail
+					resp = displayHand();
+				}
+				if (resp == '1' || '2' || '3' || '4' || '5')
+				{
+					try
+					{
+						int num = resp - '0';
+						if (!hand2.getFromInt(num).checkIfNull())
+						{
+							//pick card
+							hand2.getFromInt(num).activate(&power2, &power1, &stealRemove);
+
+							if (stealRemove != 0)
+							{
+								playerStealOrRemove();
+							}
+							else
+							{
+								playCard(2, hand2.getFromInt(num));
+							}
+
+							logTurn(hand2.getFromInt(num), true);
+							hand2.useCard(num);
+
+							break;
+						}
+					}
+					catch (...)
+					{
+
+					}
+				}
 			}
 		}
 
 		//draw board
 		displayBoard();
-
-		//log
 	
 		//Check endgame conditions
 		if ((hand1.getNoInHand() == 0 || hand2.getNoInHand() == 0))
@@ -177,27 +225,18 @@ bool Board::gameLoop()
 			}
 
 			//2: Player 1 has no cards, Player 2 only has steal/remove from hand
-			if ((hand1.getNoInHand() == 0) && (hand2.onlyUsesHand()))
+			if ((hand1.getNoInHand() == 0) && (hand2.onlyUsesHand() > 0))
 			{
-				int bonus = 0;
-				//Convert remaining cards to +1s
-				for (int i = 0; i < 5; i++)
-				{
-					if ((hand2.getFromInt(i).getCurrentDisplayName == "RH") || (hand2.getFromInt(i).getCurrentDisplayName == "RH"))
-					{
-						bonus++;
-					}
-				}
-
 				//Calculate scores and end
+				power2 += hand2.onlyUsesHand();
 				return power2 > power1;
 			}
 
 			//3: Player 2 has no cards, Player 1 only has steal/remove from hand
-			if ((hand2.getNoInHand() == 0) && (hand1.onlyUsesHand()))
+			if ((hand2.getNoInHand() == 0) && (hand1.onlyUsesHand() > 0))
 			{
-				//Convert remaining cards to +1s
 				//Calculate scores and end
+				power1 += hand1.onlyUsesHand();
 				return power2 > power1;
 			}
 		}
@@ -221,6 +260,7 @@ void Board::setEnemyPower(int power)
 	power1 += power;
 }
 
+//Adds card to board
 bool Board::playCard(int board, Card card)
 {
 	if (board == 1)
@@ -249,6 +289,7 @@ bool Board::playCard(int board, Card card)
 		}
 		return false;
 	}
+	return true;
 }
 
 void Board::drawCards()
@@ -317,6 +358,7 @@ void Board::playerStealOrRemove()
 				{
 					//card is stolen
 					hand2.addToHand(board1[choice - '0']);
+					board1[choice - '0'].deactivate(&power1, &power2);
 					board1[choice - '0'].setActive(false);
 					return;
 				}
@@ -338,7 +380,9 @@ void Board::playerStealOrRemove()
 				{
 					//card is stolen
 					hand2.addToHand(board1[choice - '0']);
-					hand1.getFromInt(choice - '0').setActive(false);
+					hand1.getFromInt(choice - '0').deactivate(&power1, &power2);
+					//hand1.getFromInt(choice - '0').setActive(false);
+					hand1.useCard(choice = '0');
 					return;
 				}
 			}
@@ -355,19 +399,21 @@ void Board::playerStealOrRemove()
 			choice = gui->getInput();
 			if (choice == '1', '2', '3', '4', '5')
 			{
-				if (!board1[choice - '0'].checkIfNull())
+				if (!board1[choice - '0' - 1].checkIfNull())
 				{
 					//card is removed
-					board1[choice - '0'].setActive(false);
+					board1[choice - '0' - 1].deactivate(&power1, &power2);
+					board1[choice - '0' - 1].setActive(false);
 					return;
 				}
 			}
 			if (choice == '6', '7', '8', '9', '0')
 			{
-				if (!board2[choice - '0'].checkIfNull())
+				if (!board2[choice - '0' - 1].checkIfNull())
 				{
 					//card is removed
-					board2[choice - '0'].setActive(false);
+					board2[choice - '0' - 1].deactivate(&power1, &power2);
+					board2[choice - '0' - 1].setActive(false);
 					return;
 				}
 			}
@@ -381,13 +427,15 @@ void Board::playerStealOrRemove()
 
 		while (true)
 		{
-			char choice = gui->getInput();
+			choice = gui->getInput();
 			if (choice == '1', '2', '3', '4', '5')
 			{
 				if (!hand1.getFromInt(choice - '0').checkIfNull())
 				{
 					//card is removed
-					hand1.getFromInt(choice - '0').setActive(false);
+					hand1.getFromInt(choice - '0').deactivate(&power1, &power2);
+					//hand1.getFromInt(choice - '0').setActive(false);
+					hand1.useCard(choice-'0');
 					return;
 				}
 			}
@@ -413,12 +461,12 @@ void Board::aiStealOrRemove()
 		{
 			//steal
 			hand1.addToHand(board2[aiChoice]);
-			board1[aiChoice].setActive(false);
+			board2[aiChoice].setActive(false);
 		}
 		else
 		{
 			//remove
-			board1[aiChoice].setActive(false);
+			board2[aiChoice].setActive(false);
 		}
 	}
 	else if (stealRemove == 2 || stealRemove == 4)
@@ -429,16 +477,59 @@ void Board::aiStealOrRemove()
 		{
 			//steal
 			hand1.addToHand(hand2.getFromInt(aiChoice));
-			hand2.getFromInt(aiChoice).setActive(false);
+			//hand2.getFromInt(aiChoice).setActive(false);
+			hand2.useCard(aiChoice);
+			return;
 		}
 		else
 		{
 			//remove
-			hand2.getFromInt(aiChoice).setActive(false);
+			//hand2.getFromInt(aiChoice).setActive(false);
+			hand2.useCard(aiChoice);
+			return;
 		}
 	}
 }
 
-void Board::logTurn()
+char Board::displayHand()
 {
+	int cardNum = 1;
+
+	while (true)
+	{
+		cardNum = gui->viewHand(hand2, cardNum, power2);
+		char resp = gui->getInput();
+
+		if (resp == 'b')
+		{
+			//back
+			displayBoard();
+			return 'h';
+		}
+		else if (resp == 'p')
+		{
+			//Play card
+			int chosen = cardNum;
+			cardNum++;
+			if (cardNum == 6) { cardNum = 1; }
+			return (chosen + '0');
+		}
+		else if (resp == '1')
+		{
+			//Next
+			cardNum++;
+			if (cardNum == 6) { cardNum = 1; }
+		}
+		else if (resp == '2')
+		{
+			//Previous
+			cardNum--;
+			if (cardNum == 0) { cardNum = 5; }
+		}
+	}
+}
+
+void Board::logTurn(Card cardUsed, bool playerTurn)
+{
+	loggy->logTurn(board1, board2, hand1, hand2, power1, power2, p2Name, p1Name, cardUsed, playerTurn);
 }
